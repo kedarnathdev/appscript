@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <title>Upload Files</title>
+  </head>
+  <body>
+    <h1>Upload files to Google drive from URL</h1>
+    <form>
+      <label>Enter the URL</label>
+      <input type="text" name="myFile" id="url" style="height:5%; width:70%">
+      <br>
+      <br>
+      <input type="button" id="submitBtn" value="Upload Files">
+      <label id="resp"><label>
+    </form>
+    <script>
+      document.getElementById('submitBtn').addEventListener('click',
+      function(e){
+        var url= document.getElementById("url").value;
+        google.script.run.withSuccessHandler(onSuccess).uploadFiles(url)
+      
+      })
+      
+      function onSuccess(url){
+        document.getElementById('resp').innerHTML = "File uploaded to path" + url;
+      }
+    </script>
+  </body>
+</html>
